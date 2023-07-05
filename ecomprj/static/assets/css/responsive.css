@@ -1,0 +1,16 @@
+/* Gaya umum */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Gaya untuk layar handphone */
+@media screen and (max-width: 767px) {
+    /* Atur tata letak atau gaya khusus untuk tampilan handphone di sini */
+}
+
+/* Gaya untuk tablet dan perangkat dengan lebar layar 768px hingga 1024px */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Atur tata letak atau gaya khusus untuk tampilan tablet di sini */
+}
