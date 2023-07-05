@@ -1,0 +1,66 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+<html>
+<head>
+    <title>Demo Pembayaran Midtrans</title>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ MIDTRANS_CLIENT_KEY }}"></script>
+</head>
+<body>
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="{% url 'core:index' %}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <span></span> Shop
+                <span></span> Checkout
+            </div>
+        </div>
+    </div>
+    <div class="container mb-80 mt-50">
+        <div class="row">
+            <div class="col-lg-8 mb-40">
+                <h1 class="heading-2 mb-10">Payment with Midtrans</h1>
+                <div class="d-flex justify-content-between">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4 class="mb-30">Billing Details</h4>
+            <form method="post">
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <input type="text" required="" name="fname" value="{{ request.user.username|title }}" placeholder="First name *">
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <input type="text" required="" name="lname" placeholder="Mobile Phone *" value="{{ active_address.mobile }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <input type="text" name="billing_address" value="{{ active_address.address }}" required="" placeholder="Address *">
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <input type="text" name="aname" value="" required="" placeholder="Post Code *">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <input type="text" name="bname" value="" required="" placeholder="City *">
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <input type="text" name="cname" value="" required="" placeholder="Country *">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <button class="btn btn-primary" onclick="pay()">Bayar Sekarang</button>
+        <script type="text/javascript">
+            function pay() {
+                snap.pay('{{ token }}');
+            }
+        </script>
+    </div>
+</body>
+</html>
+{% endblock content %}
